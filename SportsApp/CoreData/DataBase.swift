@@ -15,7 +15,7 @@ protocol DeletionDelegate{
 class DBManager{
     static let sharedInstance = DBManager()
     private init(){
-        print("Data Base")
+        
     }
 }
 extension DBManager{
@@ -28,9 +28,9 @@ extension DBManager{
             League.setValue(leagueYoutube, forKey: "strYoutube")
             do {
                 try managedContext.save()
-                print("Save Data Base")
+                
             }catch let error as NSError {
-                print("Error in saving")
+                
                 print(error.localizedDescription)
             }
         }
@@ -44,10 +44,9 @@ extension DBManager{
  
         do{
             fetchedList = try managedContext.fetch(fetchRequest) as! [Leaguess]
-            print("================================================")
-            print("Fetch")
+             
         }catch let error as NSError {
-            print("Error in saving")
+             
             print(error.localizedDescription)
         }
         return fetchedList
@@ -59,9 +58,9 @@ extension DBManager{
         do{
             try managedContext.save()
             delegate.deleteMovieAtIndexPath(indexPath: indexPath)
-            print("Cell Is Deleted")
+            
         }catch let error as NSError{
-            print("Error in saving")
+             
             print(error.localizedDescription)
         }
         

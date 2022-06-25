@@ -9,15 +9,14 @@ import UIKit
 
 class LeagueTableViewController: UIViewController {
     
-   // var sport = Sport(idSport: "", strSport: "", strFormat: "", strSportThumb: "", strSportIconGreen: "", strSportDescription: "")
-
+   
     var leagues = [League]()
     
-    //var selectedLeague = League(idLeague: "", strLeague: "", strSport: "", strLeagueAlternate: "", strBadge: "", strYoutube: "")
     
     @IBOutlet weak var leagueTable: UITableView!
     {
         didSet{
+            
             leagueTable.delegate   = self
             leagueTable.dataSource = self
         }
@@ -31,11 +30,8 @@ class LeagueTableViewController: UIViewController {
     
 }
 
-extension LeagueTableViewController:UITableViewDelegate
-{
-    
-}
-extension LeagueTableViewController:UITableViewDataSource
+ 
+extension LeagueTableViewController:UITableViewDataSource,UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         leagues.count
@@ -46,12 +42,23 @@ extension LeagueTableViewController:UITableViewDataSource
         
         leagueCell.leagueLabel.text = leagues[indexPath.row].strLeague
         leagueCell.leagueImage.loadFromLeague(URLAddress: leagues[indexPath.row].strBadge!)
-    
+        leagueCell.youtube = leagues[indexPath.row].strYoutube
+        leagueCell.layer.cornerRadius = 20
     
         return leagueCell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let leagueDetails = storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsVC") as! LeagueDetailsViewController
+        leagueDetails.cellSelect = leagues[indexPath.row].idLeague
+        leagueDetails.LeagueNames  = leagues[indexPath.row].strLeague
+        leagueDetails.LeagueImages = leagues[indexPath.row].strBadge
+        leagueDetails.LeagueYoutubeButton = leagues[indexPath.row].strYoutube
+        navigationController?.pushViewController(leagueDetails, animated: true)
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
+    }
 }
 extension LeagueTableViewController : IleagueView
 {

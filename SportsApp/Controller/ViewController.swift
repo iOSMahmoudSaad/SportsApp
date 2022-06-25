@@ -9,10 +9,10 @@ import UIKit
 import SDWebImage
  
 class ViewController: UIViewController{
-    
-    @IBOutlet weak var myCollection: UICollectionView!
     var sports = [Sport]()
+    let indicator = UIActivityIndicatorView(style: .large)
 
+    @IBOutlet weak var myCollection: UICollectionView!
     {
         didSet{
             myCollection.delegate   = self
@@ -23,8 +23,11 @@ class ViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         let homePresenter: IHomePresenter = HomePresenter(iHomeView: self) // 1
         homePresenter.fetchData(endPoint: "all_sports.php")
+      
      }
 
 }
@@ -45,16 +48,18 @@ extension ViewController :UICollectionViewDataSource,UICollectionViewDelegateFlo
         
         sportCell.sportLabel.text = sports[indexPath.row].strSport
         sportCell.sportImage.loadFromSport(URLAddress: sports[indexPath.row].strSportThumb)
-        
+        sportCell.sportImage.roundImgTable()
         return sportCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 250 , height:250)
+        return CGSize(width: 200 , height:200)
         }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             return UIEdgeInsets(top: 2, left: 2, bottom: 1, right: 2)
         }
+    
+   
     
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -95,4 +100,4 @@ extension ViewController: IHomeView {
          }
     }
 }
-
+ 

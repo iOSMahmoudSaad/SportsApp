@@ -14,8 +14,12 @@ class FavouriteViewCell: UITableViewCell {
     
     @IBOutlet weak var favouriteLeagueName: UILabel!
     
+    var favYoutube :String?
     
     @IBAction func btnFavouriteYoutube(_ sender: UIButton) {
+        if let url = URL(string: "https://\(favYoutube!)") {
+                    UIApplication.shared.open(url, options: [:])
+                }
     }
     
 

@@ -40,7 +40,7 @@ extension FavouriteLeagueViewController :UITableViewDelegate,UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteCell", for: indexPath) as! FavouriteViewCell
         cell.favouriteLeagueName.text = fave[indexPath.row].strLeague
         cell.favouriteImageLeaue.loadFromEvent(URLAddress: fave[indexPath.row].strBadge!)
-       // cell.btnFavouriteYoutube(fave[indexPath.row].strYoutube)
+        cell.favYoutube = fave[indexPath.row].strYoutube
         return cell
     }
     override func viewWillAppear(_ animated: Bool) {

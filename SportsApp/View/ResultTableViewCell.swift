@@ -9,18 +9,26 @@ import UIKit
 
 class ResultTableViewCell: UITableViewCell {
     
+    
     @IBOutlet weak var FirstTeam: UILabel!
     
     @IBOutlet weak var SecondTeam: UILabel!
     
+    
+    
+  
+    
     @IBOutlet weak var VsResult: UILabel!
     
+   
     @IBOutlet weak var resultFirst: UILabel!
     
+ 
     @IBOutlet weak var ColonResult: UILabel!
     
-    @IBOutlet weak var resultSecond: UILabel!
+   
     
+    @IBOutlet weak var resultSecond: UILabel!
     
     
     

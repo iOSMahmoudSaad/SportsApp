@@ -6,16 +6,16 @@
 //
 
 import UIKit
- 
+ import SDWebImage
 class TeamDetailViewController: UIViewController {
     
  var Detail = [TeamDetail]()
     
-    var leagueNameDetail : String?
-    var TeamImageDetail : String?
-    var TeamYearDetail: String?
-    var TeamStadiumDetail : String?
-    var TeamNameDetail : String?
+    var leagueName12 : String?
+    var TeamImage12 : String?
+    var TeamYear12: String?
+    var TeamStadium12 : String?
+    var TeamName12 : String?
 
 
     @IBOutlet weak var LeagueDetailName: UILabel!
@@ -29,8 +29,18 @@ class TeamDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        LeagueDetailName.text = leagueName12
+        LeagueImageDetail.loadFromEvent(URLAddress: TeamImage12 ?? "")
+        TeamDetailNameLabel.text = TeamName12
+        TeamDetailYearLabel.text = TeamYear12
+        TeamDetailStadiumLabel.text = TeamStadium12
+                                     
+    }
+                                     
     }
     
+ 
      
    
-}
+ 
+ 
